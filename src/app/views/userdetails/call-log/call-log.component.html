@@ -1,0 +1,56 @@
+<div class="row">
+  
+  <div class="m-033  col-4 col-xs-4 col-sm-4 col-md-5 col-lg-5 col-xl-8">
+    <button mat-raised-button color="primary" style="margin-bottom: 10px;" style="margin-left:1%;" (click)="downloadFile()"><span>Download</span></button>
+  </div>
+
+  <div class="search-box mat-elevation-z2  col-7 col-xs-7 col-sm-7 col-md-6 col-lg-6 col-xl-3">
+    <button style="cursor: auto;" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <input type="text" (keyup)="applyFilter($event.target.value)" placeholder="Search" #serachTerm />
+  </div>
+</div>
+
+  <div class="ml-05 mr-05 mt-05 pb-1 mat-elevation-z8">
+    <div class="example-container dashboardtable">
+      <mat-table [dataSource]="dataSource" matSort matSortActive="Call Date" matSortDirection="desc">
+        <ng-container matColumnDef="id">
+          <mat-header-cell fxFlex="10%" *matHeaderCellDef> S.No </mat-header-cell>
+          <mat-cell fxFlex="10%" *matCellDef="let element; let i = index;" data-label="id"> {{i+1}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Phone Number">
+            <mat-header-cell fxFlex="25%" *matHeaderCellDef mat-sort-header> Phone Number</mat-header-cell>
+            <mat-cell fxFlex="25%" *matCellDef="let element" data-label="Phone Number"> {{element['Phone Number']}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Call Type">
+          <mat-header-cell fxFlex="25%" *matHeaderCellDef mat-sort-header> Call Type</mat-header-cell>
+          <mat-cell fxFlex="25%" *matCellDef="let element" data-label="Call Type"> 
+            <span class="{{ element['Call Type'] }}">
+                {{ element['Call Type'] }}
+            </span>   
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="Call Date">
+          <mat-header-cell fxFlex="25%" *matHeaderCellDef mat-sort-header> Call Date </mat-header-cell>
+          <mat-cell fxFlex="25%" *matCellDef="let element" data-label="Call Date"> {{ element['Call Date'] | date: 'dd/MM/yyyy hh:mm a' }}
+          </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="Call duration">
+          <mat-header-cell fxFlex="15%" *matHeaderCellDef mat-sort-header> Call duration </mat-header-cell>
+          <mat-cell fxFlex="15%" *matCellDef="let element" data-label="Call duration">{{ element['Call duration'] | minuteSeconds }} </mat-cell>
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        
+      </mat-table>
+    </div>
+    <div class="footer">
+      <mat-paginator fixed [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+    </div>
+  </div>

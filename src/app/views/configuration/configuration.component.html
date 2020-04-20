@@ -1,0 +1,386 @@
+<div *ngIf="loader" class="loading-indicator">
+        <mat-spinner style="margin:0 auto;" mode="indeterminate" color="accent"></mat-spinner>
+      </div>
+<!-- <div fxLayout="row wrap" fxLayoutAlign="space-between" class="order-info"> -->
+<div class="container">
+    <div fxLayout="row" fxLayoutAlign="end center">
+            <div class="m-033">
+                    <button mat-raised-button color="primary" style="margin-bottom: 10px;"
+                    routerLink="/Dashboard" style="margin-left:1%;"><span>CANCEL</span></button>
+                </div>
+        <div class="m-033">
+            <button mat-raised-button color="primary" style="margin-bottom: 10px;"
+              (click)="save()"  style="margin-left:1%;"><span>SAVE</span></button>
+        </div>
+    </div>
+</div>
+<div class="container pt-1">
+    <div class="row" style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-3 col-sm-3">
+                    <h4>Type</h4>
+                </div>
+                <div class="col-9 col-sm-9">
+                    <mat-radio-group [(ngModel)]="type">
+                        <mat-radio-button labelPosition="before" value="Default">Default</mat-radio-button>
+                        <mat-radio-button labelPosition="before" value="User">User</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: none;">
+        <hr style="width:100%">
+    </div>
+    <div class="row  pt-2">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4>Category</h4>
+                </div>
+                <div class="col-sm-9">
+                    <mat-checkbox id="callLog" name="callLog" [(ngModel)]="callLog">Call Log</mat-checkbox>
+                    <mat-checkbox  id="smsLog" name="smsLog" [(ngModel)]="smsLog">Sms Log</mat-checkbox>
+                    <mat-checkbox  id="callRecoding" name="callRecoding"  [(ngModel)]="callRecoding">Call Recording</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+
+                </div>
+                <div class="col-sm-8">
+                    
+                    
+                </div>
+            </div>
+         
+        </div>
+    
+    </div>
+    <div class="row" style="display: none;">
+        <hr style="width:100%">
+    </div>
+    <div class="row pt-2" style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>SMS</h4>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="smsSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>Call Logs History</h4>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="callSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: none;">
+        <hr style="width:100%">
+    </div>
+    <div class="row pt-2" style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" style="display: none;">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>Calendar</h4>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="calendarSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>Key Logs</h4>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="keyLogsSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="display: none;">
+        <hr style="width:100%">
+    </div>
+    <div class="row  pt-2"  style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4>Live Recording</h4>
+                </div>
+                <div class="col-sm-6">
+                    <mat-checkbox [(ngModel)]="liveRecordingMicr">Microphone</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="liveRecordingCamera">Camera</mat-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value=""
+                            [(ngModel)]="liveRecordingSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="display: none;">
+        <hr style="width:100%">
+    </div>
+    <div class="row  pt-2" style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4>Voice Calls</h4>
+                </div>
+                <div class="col-sm-9">
+                    <mat-checkbox [(ngModel)]="voiceCallIncome">Incoming Calls</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="voiceCallOut">Outgoing Calls</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-checkbox [(ngModel)]="voiceCallAll">All Contacts</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="voiceCallUnknown">Unknown Contacts</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-4">
+                    <mat-checkbox [(ngModel)]="voiceCallSpecial">Special Contacts</mat-checkbox>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="" value="" [(ngModel)]="voiceCallSpecialValue">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="voiceCallSync">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <hr style="width:100%">
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4>Call Recordings</h4>
+                </div>
+                <div class="col-sm-9">
+                    <mat-checkbox [(ngModel)]="callRecIncome">Incoming Calls</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="callRecOut">Outgoing Calls</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-checkbox [(ngModel)]="callRecAll">All Contacts</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="callRecUnknown">Unknown Contacts</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-4">
+                    <mat-checkbox [(ngModel)]="callRecSpecial">Special Contacts</mat-checkbox>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="" value="" [(ngModel)]="callRecSpecialValue">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="callRecSync">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <hr style="width:100%">
+            </div>
+        </div>
+    </div>
+    <div class="row  pt-2"  style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>GPS Location</h4>
+                </div>
+                <div class="col-sm-6">
+                    <mat-form-field class="full-width">
+                        <input matInput name="track" placeholder="Track Interval" value=""
+                            [(ngModel)]="gpsLocationTrack">
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="gpsLocationSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="display: none;">
+        <hr style="width: 100%;">
+    </div>
+    <div class="row"  style="display: none;">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>Image/ Video/ Document</h4>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="track" placeholder="Sync Interval" value="" [(ngModel)]="imageSync">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <hr style="width:100%;">
+    </div>
+    <div class="row"  style="display: none;">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+                    <h4>Screenshot</h4>
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Take Interval" value="" [(ngModel)]="screenshotTake">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-checkbox [(ngModel)]="screenshotAll">All</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="screenshotAppBased">App Based</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Whats app" value="" [(ngModel)]="whatsapp">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="" value="" [(ngModel)]="whatsappInterval">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Google Duo" value="" [(ngModel)]="googleDue">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-4">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="" value="" [(ngModel)]="googleDueInterval">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <hr style="width:100%">
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+
+            <div class="row">
+                <div class="col-sm-3 pt-1">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field class="full-width">
+                        <input matInput name="Sync" placeholder="Sync Interval" value="" [(ngModel)]="screenshotSync">
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+
+                </div>
+                <div class="col-sm-8">
+                    <mat-form-field>
+                        <mat-label>Whatsapp</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let data of scrrenList" [value]="data">
+                                {{data}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

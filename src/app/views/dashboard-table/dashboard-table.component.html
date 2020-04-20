@@ -1,0 +1,85 @@
+<div *ngIf="loader" class="loading-indicator">
+  <mat-spinner style="margin:0 auto;" mode="indeterminate" color="accent"></mat-spinner>
+</div>
+<div class="row">
+  <div style="color: #000;
+font-size: medium;
+font-weight: 500;
+margin-left: 30px;" class="col-12">
+    USERLIST
+  </div>
+  <!--<div class="col-2"><button (click)="adduser">ADD</button></div>-->
+</div>
+<div class="row">
+  <div class="m-033  col-4 col-xs-4 col-sm-4 col-md-5 col-lg-5 col-xl-8">
+    <button mat-raised-button color="primary" style="margin-bottom: 10px;" style="margin-left:1%;"
+      (click)="addUser()"><span>Add User</span></button>
+  </div>
+
+  <div class="search-box mat-elevation-z2  col-7 col-xs-7 col-sm-7 col-md-6 col-lg-6 col-xl-3">
+    <button style="cursor: auto;" mat-icon-button>
+      <mat-icon>search</mat-icon>
+    </button>
+    <input type="text" (keyup)="applyFilter($event.target.value)" placeholder="Search" #serachTerm />
+
+  </div>
+
+
+</div>
+
+<div class="ml-05 mr-05 mt-05 pb-1 mat-elevation-z8">
+  <div class="example-container dashboardtable">
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- S.no Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell fxFlex="10%" *matHeaderCellDef > S.No </mat-header-cell>
+        <mat-cell fxFlex="10%" *matCellDef="let element; let i = index;" data-label="id"> {{i+1}} </mat-cell>
+      </ng-container>
+      <!-- Device Column -->
+      <ng-container matColumnDef="device_id">
+        <mat-header-cell fxFlex="20%" *matHeaderCellDef mat-sort-header> Device</mat-header-cell>
+        <mat-cell fxFlex="20%" *matCellDef="let element" data-label="id"> {{element?.device_id}} </mat-cell>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell fxFlex="20%" *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell fxFlex="20%" *matCellDef="let element" data-label="email"> {{element?.profile_data?.device_primary_email}} </mat-cell>
+      </ng-container>
+
+      <!-- Phone Column -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell fxFlex="20%" *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+        <mat-cell fxFlex="20%" *matCellDef="let element" data-label="phone"> {{element?.profile_data?.sim_number}} </mat-cell>
+      </ng-container>
+      <!-- Settomgs Column -->
+      <ng-container matColumnDef="settings">
+        <mat-header-cell *matHeaderCellDef> Settings </mat-header-cell>
+        <mat-cell (click)="settings(element)" class="click"   *matCellDef="let element" data-label="settings">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">build</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element" data-label="status"> Active </mat-cell>
+      </ng-container>
+      <!-- More Column -->
+      <ng-container matColumnDef="more">
+        <mat-header-cell *matHeaderCellDef> More </mat-header-cell>
+        <mat-cell class="click"  (click)="rowClick(element)" *matCellDef="let element" data-label="more">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">info</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns;sticky: true;"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+
+    </mat-table>
+
+  </div>
+  <div class="footer">
+    <mat-paginator fixed [pageSizeOptions]="[5, 10, 25, 50, 100]"></mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div *ngIf="loader || loader2" class="loading-indicator">
+    <mat-spinner style="margin:0 auto;" mode="indeterminate" color="accent"></mat-spinner>
+</div>
+<div class="container">
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <div class="m-033">
+            <button mat-raised-button color="primary" style="margin-bottom: 10px;" (click)="refresh()"
+                style="margin-left:1%;"><span>REFRESH</span></button>
+        </div>
+        <div class="m-033">
+            <button mat-raised-button color="primary" style="margin-bottom: 10px;" routerLink="/Dashboard"
+                style="margin-left:1%;"><span>BACK</span></button>
+        </div>
+    </div>
+</div>
+<mat-card class="p-0">
+    <mat-tab-group>
+        <mat-tab label="Call Log">
+            <mat-card-content class="mt-1">
+                <call-log *ngIf="callList.length > 0" [callList]="callList"></call-log>
+            </mat-card-content>
+        </mat-tab>
+        <mat-tab label="SMS Log">
+            <mat-card-content class="mt-1">
+                <sms-log *ngIf="messageList.length > 0" [messageList]="messageList"></sms-log>
+            </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Call Record">
+            <mat-card-content class="mt-1">
+                <call-record *ngIf="recordList.length > 0" [recordList]="recordList"></call-record>
+            </mat-card-content>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>
